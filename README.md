@@ -1,38 +1,60 @@
-Arvand Currency Fetcher
-This Python script fetches up-to-date currency exchange rates from the arvand.tj public API.
+🕸️ Imon Currency Scraper (Selenium)
+This Python script uses Selenium to scrape real-time currency exchange rates (Dollar, Euro, Ruble) from the official Imon.tj website.
 
 📌 Features
-Sends a GET request to https://arvand.tj/api/currencies/
+Automates Chrome browser using Selenium
 
-Disables SSL certificate warnings for easier testing
+Runs in headless mode (no GUI)
 
-Filters and returns only currencies with the type CASH_RATE
+Extracts currency buy/sell rates for:
 
-Outputs a dictionary with currency names and their buy/sell rates
+💵 Dollar
 
-🔧 Installation & Usage
-Make sure you have Python 3.7 or higher installed
+💶 Euro
 
-Install the required library:
+🇷🇺 Russian Ruble
 
-pip install requests
-Run the script:
+Optimized for performance (images disabled, long timeouts)
 
-python arvand.py
-🧪 Example Output
+Uses webdriver-manager to auto-install ChromeDriver
+
+🔧 Installation
+Install required packages:
+
+pip install selenium webdriver-manager
+Optional: If you don’t have Google Chrome installed, download and install it first.
+
+🚀 Usage
+python imon_scraper.py
+Example output:
 {
-    'USD': {'buy_rate': '10.80', 'sell_rate': '10.90'},
-    'EUR': {'buy_rate': '11.70', 'sell_rate': '11.90'}
+  'Dollar': {'buy': '10.80', 'sell': '10.90'},
+  'EURO': {'buy': '11.70', 'sell': '11.90'},
+  'Ruble': {'buy': '0.120', 'sell': '0.125'}
 }
-📁 Structure
-fetch_currency_data_arvand() — main function to request and parse data from the API
+🧠 How It Works
+Opens https://www.imon.tj/ in a headless Chrome browser
 
-Logs printed at each step: sending request, response status, filtering results
+Waits up to 120 seconds for currency elements to load
 
-⚠️ Note
-SSL verification is disabled (verify=False) — not recommended for production
+Parses currency blocks using class names, inner HTML, and XPath
 
-If the API is unavailable or returns an error, the function returns None
+Returns a dictionary of currency data (or an empty one on error)
+
+⚠️ Notes
+The script is designed to be resilient but may break if Imon.tj changes their HTML structure.
+
+Headless scraping is resource-light but slower than direct API access.
+
+The website uses SVG icons to identify currencies (dollar.svg, euro.svg, rub.svg)
+
+✅ Best Practices
+Always wrap scraping in try-except blocks (already done here)
+
+Respect websites' robots.txt and scraping policies
+
+Avoid sending frequent requests — cache results if possible
 
 📜 License
-MIT — feel free to use and modify this script for your own projects.
+MIT — free to use, share, and modify.
+
