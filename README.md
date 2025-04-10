@@ -1,48 +1,45 @@
-🏦 Amonatbonk Currency Fetcher
-This Python script fetches current exchange rates from the official Amonatbonk API, specifically targeting individual customer rates.
+# 🏦 Scraping Orionbonk Currency Rates
 
-📌 Features
-Sends a GET request to the Amonatbonk backend API
+This Python script scrapes real-time currency exchange rates from the official website of [Orionbonk](https://oriyonbonk.tj/ru).
 
-Parses and returns exchange rates for individuals
+## 📌 Features
 
-Simple and lightweight — no external dependencies other than requests
+- Fetches the latest exchange rates (buy/sell) directly from Oriyonbonk’s homepage
+- Parses HTML using `BeautifulSoup` and `lxml`
+- Returns results as a clean Python dictionary
 
-🔧 Installation
-Make sure Python 3.6+ is installed
+## 🛠️ Built With
 
-Install the required package:
+- Python 3.x
+- [requests](https://pypi.org/project/requests/)
+- [beautifulsoup4](https://pypi.org/project/beautifulsoup4/)
+- [lxml](https://pypi.org/project/lxml/)
 
+## 📦 Installation
 
-pip install requests
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Komron1992/Scraping-Orionbonk.git
+cd Scraping-Orionbonk
+
+2. Install dependencies:
+
+pip install -r requirements.txt
 
 🚀 Usage
 
-python amonatbonk.py
+Simply run the script:
 
-✅ Example Output
+python orionbonk.py
+
+💡 Example Output:
 
 {
-  "USD": {"buy": "10.80", "sell": "10.90"},
-  "EUR": {"buy": "11.70", "sell": "11.95"},
-  "RUB": {"buy": "0.120", "sell": "0.126"}
+    'USD': {'buy_price': '10.80', 'sell_price': '10.90'},
+    'EUR': {'buy_price': '11.50', 'sell_price': '11.70'},
+    ...
 }
 
-🧠 How It Works
-
-The script sends a GET request to:
-
-
-https://amonatbonk.tj/bitrix/templates/amonatbonk/ajax/ambApi.php
-
-It extracts the individuals section from the JSON response
-
-Returns a dictionary of exchange rates
-
-⚠️ Notes
-If the API is unavailable or returns an error, the script prints an error message and returns an empty dictionary
-
-The URL contains a query parameter (timestamp-like) which can be static or dynamic — in most cases it's ignored by the server
-
-📜 License
-MIT — use freely in your own projects.
+📄 License
+This project is intended for educational and informational purposes only.
